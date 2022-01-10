@@ -1,0 +1,19 @@
+.grid {  
+    box-shadow: 1px; 
+}
+
+.box{
+    background-color: white;
+    width: 100%;
+}
+
+.boxImg{
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  }
