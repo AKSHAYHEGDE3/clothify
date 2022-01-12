@@ -1,0 +1,37 @@
+.cartCard{
+    background-color: #f3f7f8;
+    padding: 2%;
+}
+
+.cartCard .col-3 img{
+    height: 250px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.cartCard .col-9,.cartCard .col-3{
+    background-color: white;
+}
+
+.cartCard .col-3{
+    border-right: 10px solid #f3f7f8;
+}
+
+.orderBox{
+    width: 50%;
+    display: block;
+    margin: 3% auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+.checkoutBtn{
+    background-color: #2874f0;
+    color: #f8e831;
+    font-size: 1.2;
+    margin: 5% auto;
+    display: block;
+}
