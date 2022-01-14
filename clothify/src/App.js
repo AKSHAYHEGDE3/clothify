@@ -4,20 +4,40 @@ import Productpg from "./pages/Productpg";
 import Cart from "./pages/Cart";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-
+import { useEffect } from "react";
+import { useSelector } from 'react-redux'
+import {useDispatch} from "react-redux";
+import { userRequest } from '../src/components/axios';
+import {setUser} from "./redux/reducers/userReducer";
 
 function App() {
-  return (
-    
 
+  const user = useSelector(state=>state.user.currentUser);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    const verifyUser = async ()=>{
+      // console.log("run")
+      try{
+         const res = await userRequest.get('/auth/verifyUser')
+        //  console.log(res)
+         dispatch(setUser(res.data))
+      } catch(err){
+        console.log(err)
+      }
+    }
+    verifyUser();
+  },[dispatch])
+
+  return (
     <div className="App">
       <Router>
         <Routes>
-              <Route path="/register" element={<Signup />} />
-              <Route path="/login" element={<Login />} /> 
+              <Route path="/register" element={user?<Home />:<Signup />} />
+              <Route path="/login" element={user?<Home />:<Login />} /> 
               <Route exact path="/" element={<Home />} />
-              <Route path="/product" element={<Productpg />} />
-              <Route path="/cart" element={<Cart />} />
+              <Route path="/product/:id" element={user?<Productpg />:<Login />} />
+              <Route path="/cart" element={user?<Cart />:<Login />} />
                 
         </Routes>
       </Router>

@@ -23,12 +23,12 @@ router.post("/register",async (req,res)=>{
             const { password, ...info } = user._doc
             const data = { ...info, accessToken }
             // console.log(data)
-            res.status(200).json({user:data})
+            res.status(200).json(data)
         
 
         } catch (error) {
             if(error.code === 11000){
-                res.status(500).json("email or username already registered")
+                res.status(409).json("email or username already registered")
             } else {
                 res.status(500).json("please enter all the details properly")
             }
@@ -62,7 +62,7 @@ router.post('/login', async (req, res) => {
                 )
                 const { password, ...info } = user._doc
                 const data = { ...info, accessToken }
-                res.status(200).json({user:data})
+                res.status(200).json(data)
                
                 // res.status(200).json({ ...info, accessToken })
             }
@@ -74,10 +74,10 @@ router.post('/login', async (req, res) => {
 
 router.get('/verifyUser', verify, async (req, res) => {
     // console.log("---auth---")
-    console.log(req.user)
+    // console.log(req.user)
     if (req.user) {
         try {
-            console.log(req.user)
+            // console.log(req.user)
             const user = await User.findById(req.user.id)
             res.status(200).json(user)
         } catch (err) {
