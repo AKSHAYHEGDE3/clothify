@@ -30,7 +30,7 @@ const HomeBody = () => {
                         products.map(product=>{
                             return <>
                                <div key={product._id} className="col-md-3 col-sm-4 col-6 mt-3 grid ">
-                                  <Card product={product} />
+                                  <Card key={product._id} product={product} />
                                </div>
                             </>
                         })

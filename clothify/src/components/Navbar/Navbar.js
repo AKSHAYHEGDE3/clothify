@@ -5,10 +5,13 @@ import { Link } from "react-router-dom"
 import {useDispatch} from "react-redux";
 import {deleteUser} from "../../redux/reducers/userReducer";
 
+
 const Navbar = () => {
 
   const user = useSelector(state => state.user.currentUser);
   const dispatch = useDispatch();
+  const cart = useSelector(state=>state.cart);
+
   const handleLogout = ()=>{
      dispatch(deleteUser())
      localStorage.setItem("token","")
@@ -33,7 +36,7 @@ const Navbar = () => {
               }
               {user ?
               <li className="nav-item mt-2 mt-lg-0 mb-0">
-                <a className="nav-link" href="/"><i className="fas fa-shopping-cart"></i><sup className='badge'>2</sup></a>
+                <a className="nav-link" href="/"><i className="fas fa-shopping-cart"></i>{cart.quantity>0?<sup className='badge'>{cart.quantity}</sup>:""}</a>
               </li> : ""}
              { user ? <li className="nav-item">
                 <a className="nav-link" onClick={handleLogout} href="/">Logout</a>
