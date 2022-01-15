@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import {useDispatch} from "react-redux";
 import { userRequest } from '../src/components/axios';
 import {setUser} from "./redux/reducers/userReducer";
+import {initializeCart} from "./redux/reducers/cartReducer"
 
 function App() {
 
@@ -28,6 +29,21 @@ function App() {
     }
     verifyUser();
   },[dispatch])
+
+  useEffect(()=>{
+    const getItem = async()=>{
+       try{
+        const getItems = await userRequest.get(`/cart/getCartItems/${user._id}`)
+        console.log(getItems.data)
+        dispatch(initializeCart({products:getItems.data}))
+       } catch(err){
+         console.log(err)
+       }
+    }
+    getItem();
+  },[dispatch,user])
+
+
 
   return (
     <div className="App">

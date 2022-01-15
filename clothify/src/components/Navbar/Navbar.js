@@ -16,7 +16,7 @@ const Navbar = () => {
      dispatch(deleteUser())
      localStorage.setItem("token","")
   }
-  // console.log(user.username)
+  // console.log(cart)
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -29,6 +29,9 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse " id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                  <Link className="nav-link mt-2 mt-lg-0" to='/'>Home</Link>
+                </li>
               {!user ?
                 <li className="nav-item">
                   <Link className="nav-link mt-2 mt-lg-0" to='/login'>Login</Link>
@@ -36,7 +39,7 @@ const Navbar = () => {
               }
               {user ?
               <li className="nav-item mt-2 mt-lg-0 mb-0">
-                <a className="nav-link" href="/"><i className="fas fa-shopping-cart"></i>{cart.quantity>0?<sup className='badge'>{cart.quantity}</sup>:""}</a>
+                <Link className="nav-link" to="/cart"><i className="fas fa-shopping-cart"></i>{cart.quantity>0?<sup className='badge'>{cart.quantity}</sup>:""}</Link>
               </li> : ""}
              { user ? <li className="nav-item">
                 <a className="nav-link" onClick={handleLogout} href="/">Logout</a>

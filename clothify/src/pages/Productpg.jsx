@@ -11,6 +11,7 @@ const Productpg = () => {
 
     const params = useParams();
     const[product,setProduct]=useState(null)
+    const[productSize,setProductSize]=useState('Size')
 
     useEffect(()=>{
         const fetchProduct = async ()=>{
@@ -26,8 +27,8 @@ const Productpg = () => {
             <Navbar />
             <div style={{backgroundColor:"white"}} className="container">
                 <div className="row mt-4">
-                    <LeftSec product={product} />
-                    <RightSec product={product} />
+                    <LeftSec product={product} productSize={productSize} />
+                    <RightSec product={product} productSize={productSize} setProductSize={setProductSize}/>
                 </div>
                 <Reviews />
             </div>

@@ -9,22 +9,33 @@ const cartSlice = createSlice({
     },
     reducers:{
         addProduct: (state, action) => {
-            state.quantity += 1;
             state.products.push(action.payload);
-            state.total += action.payload.price * action.payload.quantity;
+            state.quantity=state.products.length;
+            state.total=state.products.reduce((total,item)=>{
+                return total+=item.total
+            },0);
         },
         deleteProduct : (state,action)=>{
-            state.quantity -= 1;
             state.products = state.products.filter(item=>item._id!==action.payload.id);
-            state.total -= action.payload.price * action.payload.quantity;
+            state.quantity=state.products.length;
+            state.total=state.products.reduce((total,item)=>{
+                return total+=item.total
+            },0);
         },
         emptyTheCart : (state,action)=>{
             state.products = [];
             state.quantity = 0;
             state.total = 0;
+        },
+        initializeCart:(state,action)=>{
+            action.payload.products.map(item=>state.products.push(item));
+            state.quantity=state.products.length;
+            state.total=state.products.reduce((total,item)=>{
+              return total+=item.total
+         },0);
         }
     }
 })
 
-export const {addProduct,deleteProduct,emptyTheCart} = cartSlice.actions;
+export const {addProduct,deleteProduct,emptyTheCart,initializeCart} = cartSlice.actions;
 export default cartSlice.reducer;

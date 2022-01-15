@@ -3,20 +3,33 @@ import "./productpg.css"
 import { useState } from 'react';
 import {useDispatch} from "react-redux";
 import { addProduct } from '../../redux/reducers/cartReducer';
+import {userRequest} from "../axios";
+import { useSelector } from 'react-redux';
 
 
 
-
-const LeftSec = ({product}) => {
+const LeftSec = ({product,productSize}) => {
 
     const [quantity,setQuantity]=useState(0)
     const dispatch = useDispatch();
+    const user = useSelector(state=>state.user.currentUser)
     
 
-    const addToCart = ()=>{
-        dispatch(addProduct({...product,quantity}))
+    const addToCart = async()=>{
+        //dispatch(addProduct({...product,quantity}))
+        try{
+            const res = await userRequest.post("/cart/addToCart",{
+                userId:user._id,
+                productId:product._id,
+                quantity:quantity,
+                size:productSize,
+                total:quantity*product.price
+            })
+            dispatch(addProduct(res.data))
+        }catch(err){
+            console.log(err)
+        }
     }
-    
     
     return (
         <div className="col-md-5 p-2 py-4 lftsec ">
