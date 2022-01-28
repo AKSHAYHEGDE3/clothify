@@ -18,5 +18,18 @@ router.post("/addOrder", verify, async (req, res) => {
   
 });
 
+router.get('/getOrders/:id',verify,async(req,res)=>{
+  if(req.user.id === req.params.id || req.user.isAdmin){
+    try{
+      const orders = await Order.find({userId:req.params.id})
+      res.status(200).send(orders)
+    } catch(err){
+      res.status(500).send(err)
+    }
+  } else{
+    res.status(403).json("forbidden")
+  }
+})
+
 
 module.exports = router;

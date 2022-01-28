@@ -11,6 +11,7 @@ import { userRequest } from '../src/components/axios';
 import {setUser} from "./redux/reducers/userReducer";
 import {initializeCart} from "./redux/reducers/cartReducer"
 import Success from "./pages/Success";
+import Orders from "./pages/Orders";
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route path="/product/:id" element={user?<Productpg />:<Login />} />
               <Route path="/cart" element={user?<Cart />:<Login />} />
+              <Route path="/myOrders" element={user?<Orders />:<Login />} />
               <Route path="/success" element={user?<Success />:<Login />} />
         </Routes>
       </Router>

@@ -41,6 +41,10 @@ const Navbar = () => {
               <li className="nav-item mt-2 mt-lg-0 mb-0">
                 <Link className="nav-link" to="/cart"><i className="fas fa-shopping-cart"></i>{cart.quantity>0?<sup className='badge'>{cart.quantity}</sup>:""}</Link>
               </li> : ""}
+              {user ?
+              <li className="nav-item mt-2 mt-lg-0 mb-0">
+                <Link className="nav-link" to="/myOrders">My Orders</Link>
+              </li> : ""}
              { user ? <li className="nav-item">
                 <a className="nav-link" onClick={handleLogout} href="/">Logout</a>
               </li>:""}
