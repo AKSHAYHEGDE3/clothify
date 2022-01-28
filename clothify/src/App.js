@@ -15,14 +15,16 @@ import Success from "./pages/Success";
 function App() {
 
   const user = useSelector(state=>state.user.currentUser);
+  const cart = useSelector(state=>state.cart);
   const dispatch = useDispatch();
+
 
   useEffect(()=>{
     const verifyUser = async ()=>{
-      // console.log("run")
+      console.log("run")
       try{
          const res = await userRequest.get('/auth/verifyUser')
-        //  console.log(res)
+         console.log(res.data)
          dispatch(setUser(res.data))
       } catch(err){
         console.log(err)
@@ -33,18 +35,25 @@ function App() {
 
   useEffect(()=>{
     const getItem = async()=>{
+    
+      console.log("get cart item");
        try{
-        const getItems = await userRequest.get(`/cart/getCartItems/${user._id}`)
+        const getItems = await userRequest.get(`/cart/getCartItems/${user?._id}`)
         console.log(getItems.data)
+        
         dispatch(initializeCart({products:getItems.data}))
+        
+
        } catch(err){
          console.log(err)
        }
+      
     }
     getItem();
-  },[dispatch,user])
+  },[user])
 
-
+  console.log(user);
+  console.log(cart)
 
   return (
     <div className="App">

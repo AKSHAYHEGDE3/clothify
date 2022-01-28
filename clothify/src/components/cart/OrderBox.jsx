@@ -50,8 +50,8 @@ const OrderBox = ({cart}) => {
                 <span className='ms-3 fs-4 fw-bold'>Total</span><span style={{float:"right"}} className='me-3 fs-4 fw-bold'><i className="fas fa-rupee-sign"></i> {cart.total + 50}</span>
             </div>
             <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              name="Mugiwara Shop"
+              image="https://images4.alphacoders.com/589/thumbbig-589781.webp"
               billingAddress
               shippingAddress
               description={`Your total is Rs ${cart.total + 50}`}

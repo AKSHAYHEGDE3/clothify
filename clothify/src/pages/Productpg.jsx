@@ -30,7 +30,7 @@ const Productpg = () => {
                     <LeftSec product={product} productSize={productSize} />
                     <RightSec product={product} productSize={productSize} setProductSize={setProductSize}/>
                 </div>
-                <Reviews />
+                <Reviews product={product}/>
             </div>
         </div>
     )

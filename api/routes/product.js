@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product")
+const Review = require("../models/Review")
 const verify = require("../verifyToken")
 
 // ADD PRODUCT
@@ -79,4 +80,30 @@ router.get("/getProduct/:id",async(req,res)=>{
 }
 })
 
+//REVIEWS
+
+router.post('/addReview',async (req,res)=>{
+    console.log(req.body)
+    const newReview = new Review(req.body)
+    try{
+        const savedReview = await newReview.save()   
+        await Product.findByIdAndUpdate(req.body.productId,{$push : {'review' : savedReview}} ,{new: true,useFindAndModify: false});
+        res.status(200).send(savedReview)
+    } catch(err){
+        res.status(500).send(err)
+    }
+})
+
+router.get('/getReviews/:id',async (req,res)=>{
+    // console.log(req.params.id)
+    try{
+        const product = await Product.findById(req.params.id);
+        const reviews = product.comments;
+        res.status(200).send(reviews)
+    } catch(err){
+        res.status(500).send(err)
+    }
+})
+
 module.exports = router
+

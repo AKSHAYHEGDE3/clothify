@@ -25,6 +25,7 @@ const Signup = () => {
             localStorage.setItem("token",res.data.accessToken)
             setError('')
             navigate("/");
+            window.location.reload();
         } catch(err){
             setError(err.response.data)
         }

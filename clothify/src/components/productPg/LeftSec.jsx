@@ -18,6 +18,7 @@ const LeftSec = ({product,productSize}) => {
     const addToCart = async()=>{
         //dispatch(addProduct({...product,quantity}))
         try{
+            console.log("add to cart");
             const res = await userRequest.post("/cart/addToCart",{
                 userId:user._id,
                 productId:product._id,

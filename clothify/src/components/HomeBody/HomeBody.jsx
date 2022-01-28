@@ -72,11 +72,11 @@ const HomeBody = () => {
                     {
                         
                         products.map(product => {
-                            return <>
-                                <div key={product._id} className="col-md-3 col-sm-4 col-6 mt-3 grid ">
+                            return <React.Fragment key={product._id}>
+                                <div className="col-md-3 col-sm-4 col-6 mt-3 grid ">
                                     <Card key={product._id} product={product} />
                                 </div>
-                            </>
+                            </React.Fragment>
                         })
                     }
 
