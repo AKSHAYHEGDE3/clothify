@@ -46,7 +46,7 @@ const HomeBody = () => {
     }
 
     const clearFilter = ()=>{
-        window.location.reload()
+        setProducts(ogData)
     }
     // console.log(products)
     return (

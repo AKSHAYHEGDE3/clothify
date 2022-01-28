@@ -10,6 +10,7 @@ import {useDispatch} from "react-redux";
 import { userRequest } from '../src/components/axios';
 import {setUser} from "./redux/reducers/userReducer";
 import {initializeCart} from "./redux/reducers/cartReducer"
+import Success from "./pages/Success";
 
 function App() {
 
@@ -54,7 +55,7 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route path="/product/:id" element={user?<Productpg />:<Login />} />
               <Route path="/cart" element={user?<Cart />:<Login />} />
-                
+              <Route path="/success" element={user?<Success />:<Login />} />
         </Routes>
       </Router>
     </div>

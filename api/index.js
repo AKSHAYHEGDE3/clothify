@@ -26,10 +26,12 @@ app.use(express.json())
 const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/product");
 const cartRoutes = require("./routes/cart");
+const stripeRoutes = require("./routes/stripe");
 
 app.use("/api/auth",authRoutes)
 app.use("/api/product",productRoutes)
 app.use("/api/cart",cartRoutes)
+app.use("/api",stripeRoutes)
 
 app.listen(process.env.PORT || 5000,()=>{
     console.log("server is running")
