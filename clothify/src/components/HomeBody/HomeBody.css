@@ -9,6 +9,7 @@
 
 .boxImg{
     height: 300px;
+    width: 200px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -16,4 +17,11 @@
 
 .box:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  }
+
+  @media screen and (max-width:992px) {
+      .boxImg{
+          height: 150px;
+          width: 130px;
+      }
   }

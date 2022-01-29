@@ -23,7 +23,7 @@ const Login = () => {
             localStorage.setItem("token",res.data.accessToken)
             setErr('')
             navigate("/");
-            window.location.reload();
+            // window.location.reload();
         }catch(err){
             setErr(err.response.data)
         }

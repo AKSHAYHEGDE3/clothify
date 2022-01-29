@@ -51,7 +51,7 @@ const HomeBody = () => {
     // console.log(products)
     return (
         <div style={{ backgroundColor: "#f3f7f8" }}>
-            <div className='filter d-flex flex-row'>
+            <div className='filter d-flex flex-row flex-wrap'>
                 <select style={{width:"300px"}} className="form-select mx-3 mt-3" aria-label="Default select example" onChange={e=>handleSort(e)}>
                     <option selected="selected" hidden="hidden" >Sort According to Price</option>
                     <option value="lth">Low to High</option>
