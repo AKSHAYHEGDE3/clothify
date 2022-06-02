@@ -10,7 +10,8 @@ const HomeBody = () => {
     const [products, setProducts] = useState([]);
     const [ogData, setOgData] = useState([]);
     const [defaultSort, setDefaultSort] = useState(true);
-    
+    const [loading, setLoading] = useState(true)
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -19,6 +20,7 @@ const HomeBody = () => {
                 // console.log(res.data)
                 setProducts(res.data)
                 setOgData(res.data)
+                setLoading(false)
             } catch (err) {
                 console.log(err)
             }
@@ -26,38 +28,38 @@ const HomeBody = () => {
         fetchProducts();
     }, [])
 
-    const handleSort = (e)=>{
+    const handleSort = (e) => {
         const sort = e.target.value
-            if(sort==="htl"){
-                setProducts(prev=>
-                    [...prev].sort((a,b)=>b.price-a.price)
-                    )    
-            }
-            else if(sort==="lth"){
-                setProducts(prev=>
-                    [...prev].sort((a,b)=>a.price-b.price)
-                    )
-            }
+        if (sort === "htl") {
+            setProducts(prev =>
+                [...prev].sort((a, b) => b.price - a.price)
+            )
+        }
+        else if (sort === "lth") {
+            setProducts(prev =>
+                [...prev].sort((a, b) => a.price - b.price)
+            )
+        }
     }
 
-    const filterColor = (e)=>{
+    const filterColor = (e) => {
         const color = e.target.value
-        setProducts(ogData.filter(product=>product.color === color))
+        setProducts(ogData.filter(product => product.color === color))
     }
 
-    const clearFilter = ()=>{
+    const clearFilter = () => {
         setProducts(ogData)
     }
     // console.log(products)
     return (
         <div style={{ backgroundColor: "#f3f7f8" }}>
             <div className='filter d-flex flex-row flex-wrap'>
-                <select style={{width:"300px"}} className="form-select mx-3 mt-3" aria-label="Default select example" onChange={e=>handleSort(e)}>
+                <select style={{ width: "300px" }} className="form-select mx-3 mt-3" aria-label="Default select example" onChange={e => handleSort(e)}>
                     <option selected="selected" hidden="hidden" >Sort According to Price</option>
                     <option value="lth">Low to High</option>
                     <option value="htl">High to low</option>
                 </select>
-                <select style={{width:"300px"}} className="form-select  mx-3 mt-3" aria-label="Default select example" onChange={e=>filterColor(e)}>
+                <select style={{ width: "300px" }} className="form-select  mx-3 mt-3" aria-label="Default select example" onChange={e => filterColor(e)}>
                     <option selected="selected" hidden="hidden" >Colors</option>
                     <option value="black">Black</option>
                     <option value="red">Red</option>
@@ -66,23 +68,31 @@ const HomeBody = () => {
                 </select>
                 <button onClick={clearFilter} className='btn btn-danger mt-3 ms-5'>clear filters</button>
             </div>
-            <hr style={{border:"5px"}}/>
-            <div className="container py-3">
-                <div className="row">
-                    {
-                        
-                        products.map(product => {
-                            return <React.Fragment key={product._id}>
-                                <div className="col-md-3 col-sm-4 col-6 mt-3 grid ">
-                                    <Card key={product._id} product={product} />
-                                </div>
-                            </React.Fragment>
-                        })
-                    }
+            <hr style={{ border: "5px" }} />
+            {
+                loading ?
+                    <div className='text-center'>
+                        <img src="spinner.png" alt="" />
+                    </div>
+                    :
+                    <div className="container py-3">
+                        <div className="row">
+                            {
+
+                                products.map(product => {
+                                    return <React.Fragment key={product._id}>
+                                        <div className="col-md-3 col-sm-4 col-6 mt-3 grid ">
+                                            <Card key={product._id} product={product} />
+                                        </div>
+                                    </React.Fragment>
+                                })
+                            }
 
 
-                </div>
-            </div>
+                        </div>
+                    </div>
+            }
+
         </div>
     )
 }
