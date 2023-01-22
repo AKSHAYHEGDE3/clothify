@@ -17,7 +17,7 @@
 import Axios from 'axios'
 
 
-const BASE_URL="https://clothify-server.herokuapp.com/api"
+const BASE_URL="https://clothify-server-rt6v.onrender.com/api"
 
 export const publicRequest= Axios.create({
  baseURL: BASE_URL

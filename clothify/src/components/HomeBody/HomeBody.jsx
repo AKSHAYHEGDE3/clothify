@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react'
 
 
 const HomeBody = () => {
-
     const [products, setProducts] = useState([]);
     const [ogData, setOgData] = useState([]);
     const [defaultSort, setDefaultSort] = useState(true);
@@ -71,9 +70,7 @@ const HomeBody = () => {
             <hr style={{ border: "5px" }} />
             {
                 loading ?
-                    <div className='text-center'>
-                        <img src="spinner.png" alt="" />
-                    </div>
+                <div class="loader mt-5 mx-auto"></div>
                     :
                     <div className="container py-3">
                         <div className="row">

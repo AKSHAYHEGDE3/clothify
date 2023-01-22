@@ -9,7 +9,7 @@ const app = express();
 const mongodb = process.env.MONGO_URL
 
 var corsOptions = {
-    origin: 'https://clothify-24cd7.web.app',
+    origin: ['http://localhost:3000','https://clothify-24cd7.web.app'],
     credentials: true,
     optionsSuccessStatus: 200 // For legacy browser support
 }
